@@ -3,10 +3,21 @@
 [![Coverage Status](https://coveralls.io/repos/github/swsnu/swppfall2022-team3/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/swsnu/swppfall2022-team3?branch=main)
 
 # Pitapat Campus
+Pitapat Campus is a service setting up dates for college students on the same campus.
 
-## Frontend
+## Documentation
+- [Requirements & Specification](https://github.com/cozitive/pitapat-campus/blob/main/docs/req-spec/req-spec.md)
+- [Design & Planning](https://github.com/cozitive/pitapat-campus/blob/main/docs/design-plan/design-plan.md)
+- Sprint Backlogs
+  - [Sprint 2 Backlog](https://github.com/cozitive/pitapat-campus/blob/main/docs/backlog/team3%20sprint2%20backlog.md)
+  - [Sprint 3 Backlog](https://github.com/cozitive/pitapat-campus/blob/main/docs/backlog/team3%20sprint3%20backlog.md)
+  - [Sprint 4 Backlog](https://github.com/cozitive/pitapat-campus/blob/main/docs/backlog/team3%20sprint4%20backlog.md)
+  - [Sprint 5 Backlog](https://github.com/cozitive/pitapat-campus/blob/main/docs/backlog/team3%20sprint5%20backlog.md)
 
-### Run
+## How To Execute
+### Frontend
+
+#### Run
 
 ```shell
 cd frontend
@@ -14,16 +25,16 @@ yarn
 yarn start
 ```
 
-### Test
+#### Test
 
 ```shell
 cd frontend
 yarn test --coverage --watchAll=false
 ```
 
-## Backend
+### Backend
 
-### Run
+#### Run
 
 - `redis-server` required
 
@@ -33,7 +44,7 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
-### Test
+#### Test
 
 ```shell
 cd backend
