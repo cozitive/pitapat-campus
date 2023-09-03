@@ -20,13 +20,13 @@ Testing server is running now(https://pitapatcampus-test.com), and we will deplo
 
 ### Frontend
 
-![frontend-coverage](/Users/bong/swpp-project/docs/backlog/sprint5-frontend-coverage.png)
+![frontend-coverage](sprint5-frontend-coverage.png)
 
 It was hard to write Search page test code. The page includes infinite scroll using `IntersectionObserver`, which is hard to mock.
 
 ### Backend
 
-![backend-coverage](/Users/bong/swpp-project/docs/backlog/sprint5-backend-coverage.png)
+![backend-coverage](sprint5-backend-coverage.png)
 
 ## Contributions
 
