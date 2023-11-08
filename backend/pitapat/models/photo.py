@@ -16,8 +16,3 @@ class Photo(models.Model):
 
     def __str__(self):
         return f'{self.path}/{self.name}'
-
-    class Meta:
-        managed = False
-        db_table = 'E_Photo'
-        verbose_name = 'Photo'

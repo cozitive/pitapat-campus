@@ -23,8 +23,3 @@ class Block(models.Model):
         db_column='to',
         related_name='block_received',
     )
-
-    class Meta:
-        managed = False
-        db_table = 'R_Block'
-        verbose_name = 'block'

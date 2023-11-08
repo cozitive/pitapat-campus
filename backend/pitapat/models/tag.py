@@ -15,8 +15,3 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        managed = False
-        db_table = 'E_Tag'
-        verbose_name = 'Tag'

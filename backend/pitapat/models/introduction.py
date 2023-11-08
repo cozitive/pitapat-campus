@@ -15,8 +15,3 @@ class Introduction(models.Model):
 
     def __str__(self):
         return f'introduction of {self.user.email}'
-
-    class Meta:
-        managed = False
-        db_table = 'E_Introduction'
-        verbose_name = 'Introduction'

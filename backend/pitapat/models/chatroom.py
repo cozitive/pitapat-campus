@@ -10,7 +10,3 @@ class Chatroom(models.Model):
 
     def __str__(self):
         return f'chatroom {self.key}'
-
-    class Meta:
-        managed = False
-        db_table = 'E_Chatroom'

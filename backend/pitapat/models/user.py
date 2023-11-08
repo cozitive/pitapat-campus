@@ -40,8 +40,3 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-
-    class Meta:
-        managed = False
-        db_table = 'E_User'
-        verbose_name = 'User'

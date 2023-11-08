@@ -25,7 +25,4 @@ class UserTag(models.Model):
         return f'user {self.user.key} - tag {self.tag.key}'
 
     class Meta:
-        managed = False
-        db_table = 'R_UserTag'
-        verbose_name = 'User-Tag Relationship'
         unique_together = (('user', 'tag'),)
