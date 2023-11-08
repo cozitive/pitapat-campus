@@ -10,7 +10,7 @@ from .university import University
 
 
 class BaseUser(AbstractBaseUser, PermissionsMixin):
-    key = UnsignedAutoField(primary_key=True, db_column='user_key')
+    key = UnsignedAutoField(primary_key=True)
     email = models.EmailField(unique=True, max_length=50)
 
     reg_dt = models.DateTimeField(auto_now_add=True)

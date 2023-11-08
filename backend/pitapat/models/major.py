@@ -5,20 +5,14 @@ from .college import College
 
 
 class Major(models.Model):
-    key = UnsignedAutoField(
-        primary_key=True,
-        db_column='major_key',
-    )
-    name = models.CharField(
-        max_length=20,
-        db_column='major_name',
-    )
+    key = UnsignedAutoField(primary_key=True)
+    name = models.CharField(max_length=20)
     college = models.ForeignKey(
         College,
         on_delete=models.RESTRICT,
         related_name='majors',
-        db_column='college_key',
     )
+
     reg_dt = models.DateTimeField(auto_now_add=True)
     reg_id = models.CharField(max_length=50)
     upd_dt = models.DateTimeField(auto_now=True)

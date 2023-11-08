@@ -1,12 +1,13 @@
 from rest_framework import serializers
 
-from backend.settings import IMAGE_URL
+# from backend.settings import IMAGE_URL
 from pitapat.models import Introduction, Tag, User, UserTag
 
 
 class ImageUrlField(serializers.RelatedField):
     def to_representation(self, value):
-        return f'{IMAGE_URL}{value.name}'
+        # return f'{IMAGE_URL}{value.name}'
+        return ''
 
     def to_internal_value(self, data):
         pass

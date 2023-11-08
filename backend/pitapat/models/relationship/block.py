@@ -5,10 +5,7 @@ from pitapat.models.user import User
 
 
 class Block(models.Model):
-    key = UnsignedAutoField(
-        db_column='block_key',
-        primary_key=True,
-    )
+    key = UnsignedAutoField(primary_key=True)
     is_from = models.ForeignKey(
         User,
         null=True,
@@ -20,6 +17,5 @@ class Block(models.Model):
         User,
         null=True,
         on_delete=models.SET_NULL,
-        db_column='to',
         related_name='block_received',
     )
