@@ -5,7 +5,7 @@ from . import UnsignedAutoField
 from .chatroom import Chatroom
 from .college import College
 from .major import Major
-from .pitapat_user_manager import PitapatUserManager
+from .user_manager import PitapatUserManager
 from .university import University
 
 
@@ -34,11 +34,13 @@ class User(BaseUser):
     major = models.ForeignKey(Major, models.RESTRICT)
 
     nickname = models.CharField(null=False, max_length=30)
-    phone = models.CharField(null=True, max_length=20)
-    status = models.CharField(max_length=1)
     gender = models.CharField(max_length=1)
     interested_gender = models.CharField(max_length=1)
     birthday = models.DateField()
+
+    status = models.CharField(max_length=1)
+    phone = models.CharField(null=True, max_length=20)
+
     tags = models.ManyToManyField('Tag', through='UserTag', through_fields=('user', 'tag'))
     chatrooms = models.ManyToManyField(
         Chatroom,
