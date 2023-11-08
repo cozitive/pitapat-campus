@@ -3,7 +3,7 @@ from . import *
 
 DEBUG = True
 
-db = get_external_value(f'{BASE_DIR}/backend/.secrets/db.json', 'test')
+db = get_external_value(f'{BASE_DIR}/backend/.secrets/db.json', 'local')
 DATABASES = {
     'default': {
         'ENGINE': db['ENGINE'],
