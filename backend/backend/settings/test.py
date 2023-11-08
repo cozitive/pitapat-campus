@@ -1,7 +1,21 @@
-from . import *
+from .base import *
 
 
 DEBUG = True
+
+ALLOWED_HOSTS = get_external_value(f'{BASE_DIR}/backend/.secrets/host.json', 'test')
+
+CORS_ORIGIN_WHITELIST = get_external_value(f'{BASE_DIR}/backend/.secrets/cors_whitelist.json', 'test')
+CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
+
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+
+
+# Database
 
 db = get_external_value(f'{BASE_DIR}/backend/.secrets/db.json', 'test')
 DATABASES = {
@@ -14,14 +28,3 @@ DATABASES = {
         'NAME': db['NAME'],
     }
 }
-
-ALLOWED_HOSTS = get_external_value(f'{BASE_DIR}/backend/.secrets/host.json', 'test')
-
-CORS_ORIGIN_WHITELIST = get_external_value(f'{BASE_DIR}/backend/.secrets/cors_whitelist.json', 'test')
-CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
-
-SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-SECURE_HSTS_PRELOAD = False
