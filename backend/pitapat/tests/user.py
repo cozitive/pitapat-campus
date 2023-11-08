@@ -42,11 +42,11 @@ class UserTestCase(TestCase):
                                            'gender': 'M',
                                            'interested_gender': 'F',
                                            'birthday': "1999-01-01",
-                                           'university': self.university.key,
-                                           'college': self.college.key,
-                                           'major': self.major.key,
+                                           'university': self.university.id,
+                                           'college': self.college.id,
+                                           'major': self.major.id,
                                            'introduction': 'aaaa',
-                                           'tags': [self.tag.key]
+                                           'tags': [self.tag.id]
                                            }),
                                content_type='application/json')
         self.assertEqual(response.status_code, 201)
@@ -69,12 +69,12 @@ class UserTestCase(TestCase):
                                 'gender': 'M',
                                 'age_min': 11,
                                 'age_max': 31,
-                                'colleges_included': [self.college.key],
-                                'colleges_excluded': [College.objects.get(name='col').key],
-                                'majors_included': [self.major.key],
-                                'majors_excluded': [Major.objects.get(name='mjr').key],
-                                'tags_included': [self.tag.key],
-                                'tags_excluded': [Tag.objects.get(name='sleep').key]
+                                'colleges_included': [self.college.id],
+                                'colleges_excluded': [College.objects.get(name='col').id],
+                                'majors_included': [self.major.id],
+                                'majors_excluded': [Major.objects.get(name='mjr').id],
+                                'tags_included': [self.tag.id],
+                                'tags_excluded': [Tag.objects.get(name='sleep').id]
                               })
                               )
         self.assertEqual(response.status_code, 200)
@@ -88,11 +88,11 @@ class UserTestCase(TestCase):
                                 'gender': 'M',
                                 'interested_gender': 'F',
                                 'birthday': "1999-01-01",
-                                'university': self.university.key,
-                                'college': self.college.key,
-                                'major': self.major.key,
+                                'university': self.university.id,
+                                'college': self.college.id,
+                                'major': self.major.id,
                                 'introduction': 'aaaa',
-                                'tags': [self.tag.key]}),
+                                'tags': [self.tag.id]}),
                     content_type='application/json')
 
         user = User.objects.get(nickname='abc')
@@ -103,12 +103,12 @@ class UserTestCase(TestCase):
             tmp_file = file
             image.save(tmp_file)
             tmp_file.seek(0)
-            response = client.post(f'/api/photo/user/{user.key}/',
+            response = client.post(f'/api/photo/user/{user.id}/',
                                    {'file': tmp_file},
                                    format='multipart'
                                    )
 
-        response = client.delete(f'/api/user/{user.key}/')
+        response = client.delete(f'/api/user/{user.id}/')
         self.assertEqual(response.status_code, 204)
 
     def test_user_exist(self):

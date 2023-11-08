@@ -5,7 +5,7 @@ from pitapat.models.user import User
 
 
 class Block(models.Model):
-    key = UnsignedAutoField(primary_key=True)
+    id = UnsignedAutoField(primary_key=True)
     is_from = models.ForeignKey(
         User,
         null=True,

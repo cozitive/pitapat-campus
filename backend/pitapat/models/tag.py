@@ -5,7 +5,7 @@ from .custom_field.unsigned_auto_field import UnsignedAutoField
 
 
 class Tag(models.Model):
-    key = UnsignedAutoField(primary_key=True)
+    id = UnsignedAutoField(primary_key=True)
     name = models.CharField(max_length=20)
     type = models.CharField(max_length=20)
     reg_dt = models.DateTimeField(auto_now_add=True)

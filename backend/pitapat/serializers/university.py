@@ -6,16 +6,16 @@ from pitapat.models import University, Major, College
 class UniversitySerializer(serializers.ModelSerializer):
     class Meta:
         model = University
-        fields = ['key', 'name', 'email_domain']
+        fields = ['id', 'name', 'email_domain']
 
 
 class CollegeSerializer(serializers.ModelSerializer):
     class Meta:
         model = College
-        fields = ['key', 'name']
+        fields = ['id', 'name']
 
 
 class MajorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Major
-        fields = ['key', 'name', 'college']
+        fields = ['id', 'name', 'college']

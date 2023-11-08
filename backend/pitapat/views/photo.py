@@ -14,7 +14,7 @@ class PhotoCreateViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = PhotoUserSerializer(data={
-            'user': kwargs['user_key'],
+            'user': kwargs['user_id'],
             'name': request.data['file'],
         })
         if serializer.is_valid():
@@ -27,4 +27,4 @@ class PhotoDetailViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'delete']
     queryset = Photo.objects.all()
     serializer_class = PhotoUserSerializer
-    lookup_field = 'key'
+    lookup_field = 'id'

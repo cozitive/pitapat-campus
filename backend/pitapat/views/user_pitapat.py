@@ -16,7 +16,7 @@ class PitapatToUserViewSet(viewsets.ModelViewSet):
     # pagination_class = UserListPagination
 
     def list(self, request, *args, **kwargs):
-        user = get_object_or_404(User.objects.all(), key=kwargs['user_key'])
+        user = get_object_or_404(User.objects.all(), id=kwargs['user_id'])
         pitapats = Pitapat.objects.filter(to=user, is_from__isnull=False)
         user_chatrooms = UserChatroom.objects.filter(user=user)
         chatroom_participants = []
@@ -29,8 +29,8 @@ class PitapatToUserViewSet(viewsets.ModelViewSet):
                 pass
         for chatroom_participant in chatroom_participants:
             pitapats=pitapats.exclude(is_from=chatroom_participant)
-        sender_keys = [pitapat.is_from.key for pitapat in pitapats]
-        sender_users = User.objects.filter(key__in=sender_keys).order_by('-reg_dt')
+        sender_ids = [pitapat.is_from.id for pitapat in pitapats]
+        sender_users = User.objects.filter(id__in=sender_ids).order_by('-reg_dt')
         return Response(self.get_serializer(sender_users, many=True).data)
 
 class PitapatFromUserViewSet(viewsets.ModelViewSet):
@@ -40,7 +40,7 @@ class PitapatFromUserViewSet(viewsets.ModelViewSet):
     # pagination_class = UserListPagination
 
     def list(self, request, *args, **kwargs):
-        user = get_object_or_404(User.objects.all(), key=kwargs['user_key'])
+        user = get_object_or_404(User.objects.all(), id=kwargs['user_id'])
         pitapats = Pitapat.objects.filter(is_from=user, to__isnull=False)
         user_chatrooms = UserChatroom.objects.filter(user=user)
         chatroom_participants = []
@@ -53,6 +53,6 @@ class PitapatFromUserViewSet(viewsets.ModelViewSet):
                 pass
         for chatroom_participant in chatroom_participants:
             pitapats=pitapats.exclude(to=chatroom_participant)
-        receiver_keys = [pitapat.to.key for pitapat in pitapats]
-        receiver_users = User.objects.filter(key__in=receiver_keys).order_by('-reg_dt')
+        receiver_ids = [pitapat.to.id for pitapat in pitapats]
+        receiver_users = User.objects.filter(id__in=receiver_ids).order_by('-reg_dt')
         return Response(self.get_serializer(receiver_users, many=True).data)

@@ -16,7 +16,7 @@ class ImageUrlField(serializers.RelatedField):
 class UserListSerializer(serializers.ModelSerializer):
     major = serializers.SlugRelatedField(
         read_only=True,
-        slug_field='key',
+        slug_field='id',
     )
 
     def get_repr_photo(self, obj: User):
@@ -28,7 +28,7 @@ class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'key',
+            'id',
             'nickname',
             'gender',
             'birthday',
@@ -61,7 +61,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
     introduction = serializers.CharField()
     tags = serializers.SlugRelatedField(
         queryset=Tag.objects.all(),
-        slug_field='key',
+        slug_field='id',
         many=True,
     )
 
@@ -100,7 +100,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
     tags = serializers.SlugRelatedField(
         read_only=True,
-        slug_field='key',
+        slug_field='id',
         many=True,
     )
 
@@ -109,7 +109,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'key',
+            'id',
             'email',
             'nickname',
             'gender',

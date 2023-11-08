@@ -12,7 +12,7 @@ class UserPhotoViewSet(viewsets.ModelViewSet):
     #serializer_class = ChatroomSerializer
 
     def list(self, request, *args, **kwargs):
-        user = get_object_or_404(User.objects.all(), key=kwargs['user_key'])
+        user = get_object_or_404(User.objects.all(), id=kwargs['user_id'])
         photos = Photo.objects.filter(user=user)
         serializer = UserPhotoSerializer(photos, many=True)
         return Response(serializer.data)

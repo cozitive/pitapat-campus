@@ -5,7 +5,7 @@ from .college import College
 
 
 class Major(models.Model):
-    key = UnsignedAutoField(primary_key=True)
+    id = UnsignedAutoField(primary_key=True)
     name = models.CharField(max_length=20)
     college = models.ForeignKey(
         College,

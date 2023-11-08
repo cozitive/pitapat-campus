@@ -11,19 +11,19 @@ class UserTagTestCase(TestCase):
 
     def test_user_tag(self):
         client = Client()
-        user_key = User.objects.get(nickname='a').key
+        user_id = User.objects.get(nickname='a').id
         tag = Tag.objects.get(name='soccer')
-        tags = [tag.key]
+        tags = [tag.id]
 
         self.assertEqual(str(tag), tag.name)
 
-        response = client.post(f'/api/user/{user_key}/tag/',
+        response = client.post(f'/api/user/{user_id}/tag/',
                                json.dumps({'tags': tags}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(str(UserTag.objects.get(tag=tag)), f'user {user_key} - tag {tag.key}')
+        self.assertEqual(str(UserTag.objects.get(tag=tag)), f'user {user_id} - tag {tag.id}')
 
-        response = client.delete(f'/api/user/{user_key}/tag/',
+        response = client.delete(f'/api/user/{user_id}/tag/',
                                json.dumps({'tags': tags}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 204)

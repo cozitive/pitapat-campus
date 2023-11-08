@@ -13,5 +13,5 @@ class UserBlockTestCase(TestCase):
         to_user = User.objects.get(nickname='b')
         Block.objects.create(is_from=from_user, to=to_user)
 
-        response = client.get(f'/api/user/{from_user.key}/block/')
+        response = client.get(f'/api/user/{from_user.id}/block/')
         self.assertEqual(response.status_code, 200)

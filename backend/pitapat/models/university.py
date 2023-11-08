@@ -5,7 +5,7 @@ from .custom_field.unsigned_auto_field import UnsignedAutoField
 
 
 class University(models.Model):
-    key = UnsignedAutoField(primary_key=True)
+    id = UnsignedAutoField(primary_key=True)
     name = models.CharField(max_length=20)
     location = models.CharField(max_length=20)
     email_domain = models.CharField(max_length=20)

@@ -10,15 +10,15 @@ from .university import University
 
 
 class BaseUser(AbstractBaseUser, PermissionsMixin):
-    key = UnsignedAutoField(primary_key=True)
+    id = UnsignedAutoField(primary_key=True)
     email = models.EmailField(unique=True, max_length=50)
+
+    is_staff = models.BooleanField(default=False)
 
     reg_dt = models.DateTimeField(auto_now_add=True)
     reg_id = models.CharField(max_length=50)
     upd_dt = models.DateTimeField(auto_now=True)
     upd_id = models.CharField(max_length=50)
-
-    is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
 

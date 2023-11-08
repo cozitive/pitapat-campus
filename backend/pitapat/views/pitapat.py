@@ -13,13 +13,13 @@ class PitapatViewSet(viewsets.ModelViewSet):
     serializer_class = PitapatSerializer
 
     def create(self, request, *args, **kwargs):
-        from_key = request.data.get('from')
-        to_key = request.data.get('to')
-        if not from_key or not to_key:
+        from_id = request.data.get('from')
+        to_id = request.data.get('to')
+        if not from_id or not to_id:
             return Response(status=400)
 
-        from_user = get_object_or_404(User.objects.all(), key=from_key)
-        to_user = get_object_or_404(User.objects.all(), key=to_key)
+        from_user = get_object_or_404(User.objects.all(), id=from_id)
+        to_user = get_object_or_404(User.objects.all(), id=to_id)
 
         try:
             reverse_pitapat = Pitapat.objects.get(is_from=to_user, to=from_user)
@@ -43,13 +43,13 @@ class PitapatViewSet(viewsets.ModelViewSet):
 
     @swagger_auto_schema(request_body=PitapatSerializer)
     def destroy(self, request, *args, **kwargs):
-        from_key = request.data.get('from')
-        to_key = request.data.get('to')
-        if not from_key or not to_key:
+        from_id = request.data.get('from')
+        to_id = request.data.get('to')
+        if not from_id or not to_id:
             return Response(status=400)
 
-        from_user = get_object_or_404(User.objects.all(), key=from_key)
-        to_user = get_object_or_404(User.objects.all(), key=to_key)
+        from_user = get_object_or_404(User.objects.all(), id=from_id)
+        to_user = get_object_or_404(User.objects.all(), id=to_id)
 
         try:
             pitapat = Pitapat.objects.get(is_from=from_user, to=to_user)
