@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 
-from . import UnsignedAutoField
+from .fields import UnsignedAutoField
 from .chatroom import Chatroom
 from .college import College
 from .major import Major
