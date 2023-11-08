@@ -1,9 +1,9 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 
+from . import UnsignedAutoField
 from .chatroom import Chatroom
 from .college import College
-from .custom_field.unsigned_auto_field import UnsignedAutoField
 from .major import Major
 from .pitapat_user_manager import PitapatUserManager
 from .university import University

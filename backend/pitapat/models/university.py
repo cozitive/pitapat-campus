@@ -1,7 +1,7 @@
 # pylint: disable=duplicate-code
 from django.db import models
 
-from .custom_field.unsigned_auto_field import UnsignedAutoField
+from . import UnsignedAutoField
 
 
 class University(models.Model):

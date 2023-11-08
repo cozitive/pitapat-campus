@@ -1,7 +1,7 @@
 from django.db import models
 
+from . import UnsignedAutoField
 from .chatroom import Chatroom
-from .custom_field.unsigned_auto_field import UnsignedAutoField
 from .user import User
 
 

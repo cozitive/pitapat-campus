@@ -1,6 +1,6 @@
 from django.db import models
 
-from .custom_field.unsigned_auto_field import UnsignedAutoField
+from . import UnsignedAutoField
 from .university import University
 
 
