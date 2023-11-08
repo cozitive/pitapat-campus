@@ -14,7 +14,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 class PhotoUserSerializer(PhotoSerializer):
     user = serializers.SlugRelatedField(
         queryset=User.objects.all(),
-        slug_field='key',
+        slug_field='id',
     )
 
     class Meta:

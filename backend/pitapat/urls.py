@@ -63,7 +63,7 @@ urlpatterns = [
         name='user',
     ),
     path(
-        'user/<int:key>/',
+        'user/<int:id>/',
         views.UserDetailViewSet.as_view({
             'get': 'retrieve',
             'put': 'partial_update',
@@ -79,14 +79,14 @@ urlpatterns = [
         name='user_existence',
     ),
     path(
-        'user/<int:user_key>/introduction/',
+        'user/<int:user_id>/introduction/',
         views.UserIntroductionViewSet.as_view({
             'put': 'update',
         }),
         name='user_introduction',
     ),
     path(
-        'user/<int:user_key>/tag/',
+        'user/<int:user_id>/tag/',
         views.UserTagViewSet.as_view({
             'post': 'create',
             'delete': 'destroy',
@@ -94,21 +94,21 @@ urlpatterns = [
         name='user_tag',
     ),
     path(
-        'user/<int:user_key>/pitapat/to/',
+        'user/<int:user_id>/pitapat/to/',
         views.PitapatToUserViewSet.as_view({
             'get': 'list',
         }),
         name='pitapat_to_user',
     ),
     path(
-        'user/<int:user_key>/pitapat/from/',
+        'user/<int:user_id>/pitapat/from/',
         views.PitapatFromUserViewSet.as_view({
             'get': 'list',
         }),
         name='pitapat_from_user',
     ),
     path(
-        'user/<int:user_key>/chatroom/',
+        'user/<int:user_id>/chatroom/',
         views.UserChatroomViewSet.as_view({
             'get': 'list',
         }),
@@ -122,35 +122,35 @@ urlpatterns = [
         name='university',
     ),
     path(
-        'college/university/<int:university_key>/',
+        'college/university/<int:university_id>/',
         views.CollegeUniversityViewSet.as_view({
             'get': 'list',
         }),
         name='college_university',
     ),
     path(
-        'major/college/<int:college_key>/',
+        'major/college/<int:college_id>/',
         views.MajorCollegeViewSet.as_view({
             'get': 'list',
         }),
         name='major_college',
     ),
     path(
-        'major/university/<int:university_key>/',
+        'major/university/<int:university_id>/',
         views.MajorUniversityViewSet.as_view({
             'get': 'list',
         }),
         name='major_university',
     ),
     path(
-        'photo/user/<int:user_key>/',
+        'photo/user/<int:user_id>/',
         views.PhotoCreateViewSet.as_view({
             'post': 'create',
         }),
         name='photo',
     ),
     path(
-        'photo/<int:key>/',
+        'photo/<int:id>/',
         views.PhotoDetailViewSet.as_view({
             'get': 'retrieve',
             'delete': 'destroy',
@@ -173,7 +173,7 @@ urlpatterns = [
         name='pitapat',
     ),
     path(
-        'chatroom/<int:chatroom_key>/user/',
+        'chatroom/<int:chatroom_id>/user/',
         views.ChatroomParticipantViewSet.as_view({
             'get': 'list',
         }),
@@ -188,14 +188,14 @@ urlpatterns = [
         name='block',
     ),
     path(
-        'user/<int:user_key>/block/',
+        'user/<int:user_id>/block/',
         views.BlockFromUserViewSet.as_view({
             'get': 'list',
         }),
         name='user_block'
     ),
     path(
-        'user/<int:user_key>/photo/',
+        'user/<int:user_id>/photo/',
         views.UserPhotoViewSet.as_view({
             'get': 'list',
         }),

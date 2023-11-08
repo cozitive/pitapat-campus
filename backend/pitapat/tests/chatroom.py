@@ -14,7 +14,7 @@ class ChatroomTestCase(TestCase):
         chatroom = Chatroom.objects.create(user_count=1)
         chat = Chat.objects.create(chatroom=chatroom, author=user, content='hi',
                                    reg_dt=date.today(), upd_dt=date.today())
-        self.assertEqual(str(chatroom), f'chatroom {chatroom.key}')
+        self.assertEqual(str(chatroom), f'chatroom {chatroom.id}')
         self.assertEqual(str(chat), f'{user.nickname}: {chat.content}')
-        response = client.get(f'/api/chatroom/{user.key}/user/')
+        response = client.get(f'/api/chatroom/{user.id}/user/')
         self.assertEqual(response.status_code, 200)

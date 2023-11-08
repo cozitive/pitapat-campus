@@ -5,7 +5,7 @@ from .user import User
 
 
 class Introduction(models.Model):
-    key = UnsignedAutoField(primary_key=True)
+    id = UnsignedAutoField(primary_key=True)
     user = models.OneToOneField(User, models.CASCADE)
     content = models.TextField()
     reg_dt = models.DateTimeField(auto_now_add=True)

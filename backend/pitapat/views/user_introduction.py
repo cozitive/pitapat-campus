@@ -14,7 +14,7 @@ class UserIntroductionViewSet(viewsets.ModelViewSet):
 
     @swagger_auto_schema(request_body=IntroductionSerializer)
     def update(self, request, *args, **kwargs):
-        user = get_object_or_404(User.objects.all(), key=kwargs['user_key'])
+        user = get_object_or_404(User.objects.all(), id=kwargs['user_id'])
         introduction = get_object_or_404(Introduction.objects.all(), user=user)
         content = request.data.get('content')
         if content is None:

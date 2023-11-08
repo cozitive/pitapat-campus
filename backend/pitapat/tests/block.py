@@ -17,22 +17,22 @@ class BlockTestCase(TestCase):
         self.assertEqual(response.status_code, 400)
 
         response = client.post('/api/block/',
-                               json.dumps({'from': 99999, 'to': to_user.key}),
+                               json.dumps({'from': 99999, 'to': to_user.id}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 404)
 
         response = client.post('/api/block/',
-                               json.dumps({'from': from_user.key, 'to': 99999}),
+                               json.dumps({'from': from_user.id, 'to': 99999}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 404)
 
         response = client.post('/api/block/',
-                               json.dumps({'from': from_user.key, 'to': to_user.key}),
+                               json.dumps({'from': from_user.id, 'to': to_user.id}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 201)
 
         response = client.post('/api/block/',
-                               json.dumps({'from': from_user.key, 'to': to_user.key}),
+                               json.dumps({'from': from_user.id, 'to': to_user.id}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 409)
 
@@ -45,7 +45,7 @@ class BlockTestCase(TestCase):
         Pitapat.objects.create(is_from=to_user, to=from_user)
 
         response = client.post('/api/block/',
-                               json.dumps({'from': from_user.key, 'to': to_user.key}),
+                               json.dumps({'from': from_user.id, 'to': to_user.id}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 201)
 
@@ -58,22 +58,22 @@ class BlockTestCase(TestCase):
         self.assertEqual(response.status_code, 400)
 
         response = client.delete('/api/block/',
-                               json.dumps({'from': 99999, 'to': to_user.key}),
+                               json.dumps({'from': 99999, 'to': to_user.id}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 404)
 
         response = client.delete('/api/block/',
-                               json.dumps({'from': from_user.key, 'to': 99999}),
+                               json.dumps({'from': from_user.id, 'to': 99999}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 404)
 
         response = client.delete('/api/block/',
-                               json.dumps({'from': from_user.key, 'to': to_user.key}),
+                               json.dumps({'from': from_user.id, 'to': to_user.id}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 404)
 
         Block.objects.create(is_from=from_user, to=to_user)
         response = client.delete('/api/block/',
-                               json.dumps({'from': from_user.key, 'to': to_user.key}),
+                               json.dumps({'from': from_user.id, 'to': to_user.id}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 204)

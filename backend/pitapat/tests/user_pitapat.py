@@ -12,26 +12,26 @@ class UserPitapatTestCase(TestCase):
         user_name_a = User.objects.get(nickname='a')
         user_name_b = User.objects.get(nickname='b')
 
-        response = client.get(f'/api/user/{user_name_a.key}/pitapat/to/')
+        response = client.get(f'/api/user/{user_name_a.id}/pitapat/to/')
         self.assertEqual(response.status_code, 200)
 
-        response = client.get(f'/api/user/{user_name_a.key}/pitapat/from/')
+        response = client.get(f'/api/user/{user_name_a.id}/pitapat/from/')
         self.assertEqual(response.status_code, 200)
 
         chatroom = Chatroom.objects.create(user_count=2)
         UserChatroom.objects.create(chatroom=chatroom, user=user_name_a)
 
 
-        response = client.get(f'/api/user/{user_name_a.key}/pitapat/to/')
+        response = client.get(f'/api/user/{user_name_a.id}/pitapat/to/')
         self.assertEqual(response.status_code, 200)
 
-        response = client.get(f'/api/user/{user_name_a.key}/pitapat/from/')
+        response = client.get(f'/api/user/{user_name_a.id}/pitapat/from/')
         self.assertEqual(response.status_code, 200)
 
         UserChatroom.objects.create(chatroom=chatroom, user=user_name_b)
 
-        response = client.get(f'/api/user/{user_name_a.key}/pitapat/to/')
+        response = client.get(f'/api/user/{user_name_a.id}/pitapat/to/')
         self.assertEqual(response.status_code, 200)
 
-        response = client.get(f'/api/user/{user_name_a.key}/pitapat/from/')
+        response = client.get(f'/api/user/{user_name_a.id}/pitapat/from/')
         self.assertEqual(response.status_code, 200)

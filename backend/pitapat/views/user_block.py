@@ -15,8 +15,8 @@ class BlockFromUserViewSet(viewsets.ModelViewSet):
     # pagination_class = UserListPagination
 
     def list(self, request, *args, **kwargs):
-        user = get_object_or_404(User.objects.all(), key=kwargs['user_key'])
+        user = get_object_or_404(User.objects.all(), id=kwargs['user_id'])
         blocks = Block.objects.filter(is_from=user, to__isnull=False)
-        receiver_keys = [block.to.key for block in blocks]
-        blocked_users = User.objects.filter(key__in=receiver_keys).order_by('-reg_dt')
+        receiver_ids = [block.to.id for block in blocks]
+        blocked_users = User.objects.filter(id__in=receiver_ids).order_by('-reg_dt')
         return Response(self.get_serializer(blocked_users, many=True).data)

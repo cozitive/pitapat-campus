@@ -8,7 +8,7 @@ from pitapat.models import Chatroom, UserChatroom
 class ChatroomSerializer(serializers.ModelSerializer):
     chatroom = serializers.SlugRelatedField(
         queryset=Chatroom.objects.all(),
-        slug_field='key',
+        slug_field='id',
     )
 
     def get_name(self, user_chatroom: UserChatroom):

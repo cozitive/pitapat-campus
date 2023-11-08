@@ -9,14 +9,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def __init__(self):
         super().__init__(self)
         self.user = None
-        self.chatroom_key = None
+        self.chatroom_id = None
         self.room_group_name = None
         self.chatroom = None
 
     async def connect(self):
         self.user = self.scope['user']
-        self.chatroom_key = self.scope['url_route']['kwargs']['chatroom_key']
-        self.room_group_name = f'chatroom_{self.chatroom_key}'
+        self.chatroom_id = self.scope['url_route']['kwargs']['chatroom_id']
+        self.room_group_name = f'chatroom_{self.chatroom_id}'
         self.chatroom = await database_sync_to_async(self.get_chatroom)()
 
         await self.channel_layer.group_add(
@@ -36,15 +36,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
 
     def get_chatroom(self):
-        return Chatroom.objects.get(key=self.chatroom_key)
+        return Chatroom.objects.get(id=self.chatroom_id)
 
     def get_chats(self):
         def reg_dt_parser(chat):
             chat['reg_dt'] = str(chat['reg_dt'])
             return chat
 
-        chatroom = Chatroom.objects.get(key=self.chatroom_key)
-        chats = chatroom.chats.all().values('key', 'content', 'author', "reg_dt")
+        chatroom = Chatroom.objects.get(id=self.chatroom_id)
+        chats = chatroom.chats.all().values('id', 'content', 'author', "reg_dt")
         return [reg_dt_parser(chat) for chat in chats]
 
     async def load_past_messages(self, event):
@@ -62,7 +62,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data=None, bytes_data=None):
         text_data_json: dict = json.loads(text_data)
         method = text_data_json['method']
-        author_key = self.user.key
+        author_id = self.user.id
 
         # {
         #     "method": "create",
@@ -77,7 +77,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'type': 'send_message',
                     'method': method,
                     'content': content,
-                    'author': author_key,
+                    'author': author_id,
                 },
             )
             await database_sync_to_async(self.create_chat)(content)

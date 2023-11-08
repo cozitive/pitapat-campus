@@ -5,7 +5,7 @@ from .user import User
 
 
 class Photo(models.Model):
-    key = UnsignedAutoField(primary_key=True)
+    id = UnsignedAutoField(primary_key=True)
     user = models.ForeignKey(User, models.CASCADE, related_name='photos')
     name = models.ImageField(max_length=50)
     path = models.CharField(max_length=256) # unused?

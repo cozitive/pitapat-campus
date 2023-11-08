@@ -6,7 +6,7 @@ from .user import User
 
 
 class Chat(models.Model):
-    key = UnsignedAutoField(primary_key=True)
+    id = UnsignedAutoField(primary_key=True)
     chatroom = models.ForeignKey(
         Chatroom,
         on_delete=models.CASCADE,

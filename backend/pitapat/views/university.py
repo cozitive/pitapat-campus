@@ -18,9 +18,9 @@ class CollegeUniversityViewSet(viewsets.ModelViewSet):
     serializer_class = CollegeSerializer
 
     def list(self, request, *args, **kwargs):
-        university_key = kwargs['university_key']
-        get_object_or_404(University.objects.all(), key=university_key)
-        colleges = College.objects.filter(university=university_key)
+        university_id = kwargs['university_id']
+        get_object_or_404(University.objects.all(), id=university_id)
+        colleges = College.objects.filter(university=university_id)
         serializer = self.get_serializer(colleges, many=True)
         return Response(serializer.data)
 
@@ -31,9 +31,9 @@ class MajorCollegeViewSet(viewsets.ModelViewSet):
     serializer_class = MajorSerializer
 
     def list(self, request, *args, **kwargs):
-        college_key = kwargs['college_key']
-        get_object_or_404(College.objects.all(), key=college_key)
-        majors = Major.objects.filter(college=college_key)
+        college_id = kwargs['college_id']
+        get_object_or_404(College.objects.all(), id=college_id)
+        majors = Major.objects.filter(college=college_id)
         serializer = self.get_serializer(majors, many=True)
         return Response(serializer.data)
 
@@ -44,8 +44,8 @@ class MajorUniversityViewSet(viewsets.ModelViewSet):
     serializer_class = MajorSerializer
 
     def list(self, request, *args, **kwargs):
-        university_key = kwargs['university_key']
-        get_object_or_404(University.objects.all(), key=university_key)
-        majors = Major.objects.filter(college__university=university_key)
+        university_id = kwargs['university_id']
+        get_object_or_404(University.objects.all(), id=university_id)
+        majors = Major.objects.filter(college__university=university_id)
         serializer = self.get_serializer(majors, many=True)
         return Response(serializer.data)

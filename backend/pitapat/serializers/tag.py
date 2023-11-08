@@ -6,10 +6,10 @@ from pitapat.models import Tag
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ['key', 'name', 'type']
+        fields = ['id', 'name', 'type']
 
 
-class TagKeySerializer(serializers.ModelSerializer):
+class TagIdSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ['key']
+        fields = ['id']

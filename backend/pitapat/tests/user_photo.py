@@ -21,10 +21,10 @@ class UserPhotoTestCase(TestCase):
             tmp_file = file
             image.save(tmp_file)
             tmp_file.seek(0)
-            response = client.post(f'/api/photo/user/{user.key}/',
+            response = client.post(f'/api/photo/user/{user.id}/',
                                    {'file': tmp_file},
                                    format='multipart'
                                    )
 
-            response = client.get(f'/api/user/{user.key}/photo/')
+            response = client.get(f'/api/user/{user.id}/photo/')
             self.assertEqual(response.status_code, 200)

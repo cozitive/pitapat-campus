@@ -15,26 +15,26 @@ class UserIntroductionTestCase(TestCase):
         user_email = user_one.email
         introduction = Introduction.objects.get(content='hi')
         self.assertEqual(str(introduction), f'introduction of {user_email}')
-        #user_two = User.objects.get(nickname='b').key
+        #user_two = User.objects.get(nickname='b').id
 
 
-        #response = client.get(f'/user/{user_one.key}/introduction/')
+        #response = client.get(f'/user/{user_one.id}/introduction/')
         #self.assertEqual(response.status_code, 200)
 
-        #response = client.post(f'/user/{user_one.key}/introduction/',
+        #response = client.post(f'/user/{user_one.id}/introduction/',
         #                       json.dumps({'content': 'hello'}),
         #                       content_type='application/json')
         #self.assertEqual(response.status_code, 404)
 
-        #response = client.post(f'/user/{user_two.key}/introduction/',
+        #response = client.post(f'/user/{user_two.id}/introduction/',
         #                       json.dumps({'content': 'hello'}),
         #                       content_type='application/json')
         #self.assertEqual(response.status_code, 200)
 
-        response = client.put(f'/api/user/{user_one.key}/introduction/')
+        response = client.put(f'/api/user/{user_one.id}/introduction/')
         self.assertEqual(response.status_code, 404)
 
-        response = client.put(f'/api/user/{user_one.key}/introduction/',
+        response = client.put(f'/api/user/{user_one.id}/introduction/',
                                json.dumps({'content': 'hello'}),
                                content_type='application/json')
         self.assertEqual(response.status_code, 200)

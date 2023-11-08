@@ -29,7 +29,7 @@ class UserViewSet(viewsets.ModelViewSet):
         filters = Q()
 
         if isinstance(request.user, User):
-            filters &= ~Q(key=request.user.key)
+            filters &= ~Q(id=request.user.id)
             filters &= Q(university=request.user.university)
             filters &= exclude_pitapat_users(request.user)
             filters &= exclude_chatroom_users(request.user)
@@ -72,7 +72,7 @@ class UserViewSet(viewsets.ModelViewSet):
         tags_included = request.GET.get('tags_included')
         if tags_included:
             tags_included = parse_int_query_parameters(tags_included)
-            filters &= Q(key__in=UserTag.objects.filter(tag__in=tags_included)
+            filters &= Q(id__in=UserTag.objects.filter(tag__in=tags_included)
                                                 .values('user')
                                                 .annotate(cnt=Count('*'))
                                                 .values('user', 'cnt')
@@ -83,7 +83,7 @@ class UserViewSet(viewsets.ModelViewSet):
         tags_excluded = request.GET.get('tags_excluded')
         if tags_excluded:
             tags_excluded = parse_int_query_parameters(tags_excluded)
-            filters &= ~Q(key__in=UserTag.objects.filter(tag__in=tags_excluded)
+            filters &= ~Q(id__in=UserTag.objects.filter(tag__in=tags_excluded)
                                                  .values('user')
                                                  .distinct()
                                                  .values('user'))
@@ -99,7 +99,7 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
-            return Response({'key': user.key, **serializer.data}, status=201)
+            return Response({'id': user.id, **serializer.data}, status=201)
         return Response(serializer.errors, status=400)
 
 
@@ -107,16 +107,16 @@ class UserDetailViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'put', 'delete']
     queryset = User.objects.all()
     serializer_class = UserDetailSerializer
-    lookup_field = 'key'
+    lookup_field = 'id'
 
     def destroy(self, request, *args, **kwargs):
-        key = kwargs['key']
-        Introduction.objects.get(user=key).delete()
-        for user_tag in UserTag.objects.filter(user=key):
+        id = kwargs['id']
+        Introduction.objects.get(user=id).delete()
+        for user_tag in UserTag.objects.filter(user=id):
             user_tag.delete()
-        for photo in Photo.objects.filter(user=key):
+        for photo in Photo.objects.filter(user=id):
             photo.delete()
-        User.objects.get(key=key).delete()
+        User.objects.get(id=id).delete()
         return Response(status=204)
 
 
@@ -133,11 +133,11 @@ class UserExistenceCheckViewSet(viewsets.ModelViewSet):
 def exclude_pitapat_users(session_user):
     filters = Q()
     sended_pitapats = Pitapat.objects.filter(to=session_user, is_from__isnull=False)
-    sender_keys = [pitapat.is_from.key for pitapat in sended_pitapats]
-    filters &= ~Q(key__in=sender_keys)
+    sender_ids = [pitapat.is_from.id for pitapat in sended_pitapats]
+    filters &= ~Q(id__in=sender_ids)
     received_pitapats = Pitapat.objects.filter(is_from=session_user, to__isnull=False)
-    receiver_keys = [pitapat.to.key for pitapat in received_pitapats]
-    filters &= ~Q(key__in=receiver_keys)
+    receiver_ids = [pitapat.to.id for pitapat in received_pitapats]
+    filters &= ~Q(id__in=receiver_ids)
     return filters
 
 
@@ -146,21 +146,21 @@ def exclude_chatroom_users(session_user):
     chatroom_users = []
     for user_chatroom in user_chatrooms:
         chatroom_users.extend(
-            [uc.user.key for uc in UserChatroom.objects.filter(
+            [uc.user.id for uc in UserChatroom.objects.filter(
                 Q(chatroom=user_chatroom.chatroom) & ~Q(user=session_user)
             )]
         )
-    return ~Q(key__in=chatroom_users)
+    return ~Q(id__in=chatroom_users)
 
 
 def exclude_blocked_users(session_user):
     filters = Q()
     sended_blocks = Block.objects.filter(to=session_user, is_from__isnull=False)
-    sender_keys = [block.is_from.key for block in sended_blocks]
-    filters &= ~Q(key__in=sender_keys)
+    sender_ids = [block.is_from.id for block in sended_blocks]
+    filters &= ~Q(id__in=sender_ids)
     received_blocks = Block.objects.filter(is_from=session_user, to__isnull=False)
-    receiver_keys = [block.to.key for block in received_blocks]
-    filters &= ~Q(key__in=receiver_keys)
+    receiver_ids = [block.to.id for block in received_blocks]
+    filters &= ~Q(id__in=receiver_ids)
     return filters
 
 
