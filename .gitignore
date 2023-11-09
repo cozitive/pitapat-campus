@@ -443,3 +443,5 @@ coverage.json
 
 # shell scripts
 *.sh
+
+docs/*.drawio

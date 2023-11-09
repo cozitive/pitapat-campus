@@ -152,7 +152,7 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'pitapat.models.unsigned_auto_field.UnsignedAutoField'
+DEFAULT_AUTO_FIELD = 'pitapat.models.fields.UnsignedAutoField'
 
 
 # Email Verification

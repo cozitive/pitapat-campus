@@ -1,6 +1,6 @@
 from django.db import models
 
-from . import UnsignedAutoField
+from .fields import UnsignedAutoField
 from .chatroom import Chatroom
 from .user import User
 
