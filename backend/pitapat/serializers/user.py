@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
-from backend.settings import IMAGE_URL
 from pitapat.models import Introduction, Tag, User, UserTag
 
 
 class ImageUrlField(serializers.RelatedField):
     def to_representation(self, value):
-        return f'{IMAGE_URL}{value.name}'
+        return ''
+        # return f'{IMAGE_URL}{value.name}'
 
     def to_internal_value(self, data):
         pass
@@ -21,7 +21,8 @@ class UserListSerializer(serializers.ModelSerializer):
     def get_repr_photo(self, obj: User):
         if not obj.photos.all():
             return ''
-        return f'{IMAGE_URL}{obj.photos.all()[0].name}'
+        return ''
+        # return f'{IMAGE_URL}{obj.photos.all()[0].name}'
     repr_photo = serializers.SerializerMethodField()
 
     class Meta:
