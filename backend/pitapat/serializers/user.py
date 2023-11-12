@@ -5,7 +5,7 @@ from pitapat.models import Introduction, Tag, User, UserTag
 
 class ImageUrlField(serializers.RelatedField):
     def to_representation(self, value):
-        return ''
+        return value.path
         # return f'{IMAGE_URL}{value.name}'
 
     def to_internal_value(self, data):
@@ -21,7 +21,7 @@ class UserListSerializer(serializers.ModelSerializer):
     def get_repr_photo(self, obj: User):
         if not obj.photos.all():
             return ''
-        return ''
+        return obj.photos.all()[0].path
         # return f'{IMAGE_URL}{obj.photos.all()[0].name}'
     repr_photo = serializers.SerializerMethodField()
 

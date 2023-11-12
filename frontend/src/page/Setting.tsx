@@ -44,7 +44,8 @@ export default function Setting() {
 
   const getReprPhotoPath = useCallback(() => {
     const photoPath = loginUser?.photos[0];
-    return photoPath ?? "";
+    // FIXME: local image path
+    return `/media/${photoPath}` ?? "";
   }, [loginUser]);
 
   return (

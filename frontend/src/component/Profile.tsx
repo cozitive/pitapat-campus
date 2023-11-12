@@ -38,7 +38,8 @@ export default function Profile({
             className={"w-full z-0"}
           >
             <img
-              src={user.photos[0]}
+              // FIXME: local image path
+              src={`/media/${user.photos[0]}`}
               alt={user.photos[0]}
               className={"object-cover w-full h-[100vw]"}
             />

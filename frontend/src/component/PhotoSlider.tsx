@@ -26,7 +26,8 @@ export default function PhotoSlider({
       {user.photos.map((photoPath, index) =>
         <img
           key={index}
-          src={photoPath}
+          // FIXME: local image path
+          src={`/media/${photoPath}`}
           alt={photoPath}
           className={"object-cover h-[100vw]"}
         />

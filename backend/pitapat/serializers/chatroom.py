@@ -25,7 +25,7 @@ class ChatroomSerializer(serializers.ModelSerializer):
             user = UserChatroom.objects.get(Q(chatroom=chatroom) & ~Q(user=user_chatroom.user)).user
         except UserChatroom.DoesNotExist:
             return ''
-        return ''
+        return f'{user.photos.all()[0].path}' if user.photos.all() else ''
         # return f'{IMAGE_URL}{user.photos.all()[0].name}' if user.photos.all() else ''
     image_path = serializers.SerializerMethodField()
 
