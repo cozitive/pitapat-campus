@@ -42,7 +42,8 @@ export default function ChatListElement({
       <img
         className={"w-16 h-16 m-2 bg-blue-100 rounded-full"}
         alt={"프로필 사진"}
-        src={imagePath}
+        // FIXME: local image path
+        src={`/media/${imagePath}`}
       />
       <article
         className={"flex-1 flex flex-col h-full pl-2 w-0"}

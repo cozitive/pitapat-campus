@@ -16,6 +16,7 @@ class PhotoCreateViewSet(viewsets.ModelViewSet):
         serializer = PhotoUserSerializer(data={
             'user': kwargs['user_key'],
             'name': request.data['file'],
+            'path': str(request.data['file']),
         })
         if serializer.is_valid():
             serializer.save()

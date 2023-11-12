@@ -1,7 +1,7 @@
 import binascii
 from Crypto.Cipher import AES
 
-from backend.settings import CRYPTO_KEY, CRYPTO_IV
+from backend.settings.base import CRYPTO_KEY, CRYPTO_IV
 
 
 def create_verification_code(email, request_time):

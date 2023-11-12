@@ -27,7 +27,3 @@ class Chat(models.Model):
 
     def __str__(self):
         return f'{self.author.nickname}: {self.content}'
-
-    class Meta:
-        managed = False
-        db_table = 'E_Chat'

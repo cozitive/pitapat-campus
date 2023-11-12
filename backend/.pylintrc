@@ -2,5 +2,5 @@
 init-hook='import sys; sys.path.append("./")'
 ignore-paths=venv/, backend/settings/, pitapat/migrations/, manage.py
 load-plugins=pylint_django
-django-settings-module=backend.settings
+django-settings-module=backend.settings.local
 disable=missing-module-docstring, missing-class-docstring, missing-function-docstring, too-many-ancestors

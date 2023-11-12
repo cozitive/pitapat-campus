@@ -1,19 +1,7 @@
-from . import *
+from .base import *
 
 
 DEBUG = True
-
-db = get_external_value(f'{BASE_DIR}/backend/.secrets/db.json', 'test')
-DATABASES = {
-    'default': {
-        'ENGINE': db['ENGINE'],
-        'HOST': db['HOST'],
-        'PORT': db['PORT'],
-        'USER': db['USER'],
-        'PASSWORD': db['PASSWORD'],
-        'NAME': db['NAME'],
-    }
-}
 
 ALLOWED_HOSTS = get_external_value(f'{BASE_DIR}/backend/.secrets/host.json', 'local')
 
@@ -25,3 +13,23 @@ SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 SECURE_HSTS_PRELOAD = False
+
+
+# Database
+
+db = get_external_value(f'{BASE_DIR}/backend/.secrets/db.json', 'local')
+DATABASES = {
+    'default': {
+        'ENGINE': db['ENGINE'],
+        'HOST': db['HOST'],
+        'PORT': db['PORT'],
+        'USER': db['USER'],
+        'PASSWORD': db['PASSWORD'],
+        'NAME': db['NAME'],
+    }
+}
+
+# Media
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'

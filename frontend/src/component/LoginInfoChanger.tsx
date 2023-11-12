@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import InformationInput from "./signup/InformationInput";
 import style from "../constant/style";
 import { AppDispatch } from "../store";
 import { fetchSignin, selectUser } from "../store/slices/user";
 import { passwordChange, userUrl } from "../store/urls";
-import InformationInput from "./signup/InformationInput";
 
 
 interface IProps {

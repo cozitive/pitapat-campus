@@ -23,8 +23,3 @@ class Pitapat(models.Model):
         db_column='to',
         related_name='pitapat_received',
     )
-
-    class Meta:
-        managed = False
-        db_table = 'R_Pitapat'
-        verbose_name = 'pitapat'

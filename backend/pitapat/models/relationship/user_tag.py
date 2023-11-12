@@ -10,7 +10,7 @@ class UserTag(models.Model):
         db_column='user_tag_key',
         primary_key=True,
     )
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User,
         on_delete=models.RESTRICT,
         db_column='user_key',
@@ -25,7 +25,4 @@ class UserTag(models.Model):
         return f'user {self.user.key} - tag {self.tag.key}'
 
     class Meta:
-        managed = False
-        db_table = 'R_UserTag'
-        verbose_name = 'User-Tag Relationship'
         unique_together = (('user', 'tag'),)

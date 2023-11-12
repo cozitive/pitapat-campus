@@ -19,4 +19,4 @@ class PhotoUserSerializer(PhotoSerializer):
 
     class Meta:
         model = Photo
-        fields = ['user', 'name']
+        fields = ['user', 'name', 'path']

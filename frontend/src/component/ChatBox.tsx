@@ -46,7 +46,8 @@ export default function ChatBox({
             <img
               className={"w-10 h-10 m-2 bg-blue-100 rounded-full justify-self-top"}
               alt={""}
-              src={sender.photos[0]}
+              // FIXME: local image path
+              src={`/media/${sender.photos[0]}`}
             />
           </button>
           <article className={`${basicChatClassName} ${othersChatClassName}`}>

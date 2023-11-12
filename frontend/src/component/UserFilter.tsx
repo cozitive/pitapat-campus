@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch , useSelector } from "react-redux";
 import { pink } from "@mui/material/colors";
 import Slider from "@mui/material/Slider";
+import UserFilterElement from "./UserFilterElement";
 import style from "../constant/style";
 import { AppDispatch } from "../store";
 import { getColleges, selectCollege } from "../store/slices/college";
@@ -9,7 +10,6 @@ import { getMajorsByUniversity, selectMajor } from "../store/slices/major";
 import { getTags, selectTag } from "../store/slices/tag";
 import { getNewUsers, selectUser, userActions } from "../store/slices/user";
 import { College, Major, Tag } from "../types";
-import UserFilterElement from "./UserFilterElement";
 
 
 interface IProps {

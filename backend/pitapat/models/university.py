@@ -18,7 +18,4 @@ class University(models.Model):
         return self.name
 
     class Meta:
-        managed = False
-        db_table = 'E_University'
-        verbose_name = 'University'
         verbose_name_plural = 'Universities'

@@ -27,11 +27,13 @@ class UserViewSet(viewsets.ModelViewSet):
     @swagger_auto_schema(query_serializer=UserListFilterSerializer)
     def list(self, request, *args, **kwargs):
         filters = Q()
-        filters &= ~Q(key=request.user.key)
-        filters &= Q(university=request.user.university)
-        filters &= exclude_pitapat_users(request.user)
-        filters &= exclude_chatroom_users(request.user)
-        filters &= exclude_blocked_users(request.user)
+
+        if isinstance(request.user, User):
+            filters &= ~Q(key=request.user.key)
+            filters &= Q(university=request.user.university)
+            filters &= exclude_pitapat_users(request.user)
+            filters &= exclude_chatroom_users(request.user)
+            filters &= exclude_blocked_users(request.user)
 
         gender = request.GET.get('gender')
         if gender:

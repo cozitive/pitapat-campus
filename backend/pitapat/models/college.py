@@ -26,8 +26,3 @@ class College(models.Model):
 
     def __str__(self):
         return f'{self.university} {self.name}'
-
-    class Meta:
-        managed = False
-        db_table = 'E_College'
-        verbose_name = 'College'
