@@ -10,7 +10,7 @@ class UserTag(models.Model):
         db_column='user_tag_key',
         primary_key=True,
     )
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User,
         on_delete=models.RESTRICT,
         db_column='user_key',
