@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { TextField } from "@mui/material";
 import axios from "axios";
+import InformationInput from "./InformationInput";
 import paths from "../../constant/path";
 import style from "../../constant/style";
 import { AppDispatch } from "../../store";
@@ -10,7 +11,6 @@ import { getUniversities, selectUniversity } from "../../store/slices/university
 import { userUrl, authEmailUrl } from "../../store/urls";
 import { University } from "../../types";
 import SignInModal from "../SignInModal";
-import InformationInput from "./InformationInput";
 
 
 export interface IProps {

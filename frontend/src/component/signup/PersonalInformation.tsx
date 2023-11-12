@@ -1,12 +1,12 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import InformationInput from "./InformationInput";
 import style from "../../constant/style";
 import { AppDispatch } from "../../store";
 import { getColleges, selectCollege } from "../../store/slices/college";
 import { getMajorsByUniversity, selectMajor } from "../../store/slices/major";
 import { College, Gender, Major, University } from "../../types";
 import SignInModal from "../SignInModal";
-import InformationInput from "./InformationInput";
 
 
 export interface IProps {

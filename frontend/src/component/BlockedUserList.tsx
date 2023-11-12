@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useCallback, useRef } from "react";
 import { useSelector } from "react-redux";
 import { ArrowUturnLeftIcon } from "@heroicons/react/20/solid";
+import BlockedUserElement from "./BlockedUserElement";
 import style from "../constant/style";
 import { selectUser } from "../store/slices/user";
-import BlockedUserElement from "./BlockedUserElement";
 
 
 interface IProps {

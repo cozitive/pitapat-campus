@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { pink } from "@mui/material/colors";
+import TagElement from "./TagElement";
 import style from "../../constant/style";
 import { AppDispatch } from "../../store";
 import { getTags, selectTag } from "../../store/slices/tag";
 import { Tag } from "../../types";
-import TagElement from "./TagElement";
 
 
 export interface IProps {

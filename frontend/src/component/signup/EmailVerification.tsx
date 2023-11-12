@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import InformationInput from "./InformationInput";
 import style from "../../constant/style";
 import { authEmailUrl, authVerifyUrl } from "../../store/urls";
 import SignInModal from "../SignInModal";
-import InformationInput from "./InformationInput";
 
 
 export interface IProps {

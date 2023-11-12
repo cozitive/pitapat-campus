@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router";
+import PitapatButton from "./PitapatButton";
 import paths from "../constant/path";
 import { AppDispatch } from "../store";
 import { getUser, selectUser } from "../store/slices/user";
 import { User } from "../types";
 import { getKoreanAge } from "../util/date";
-import PitapatButton from "./PitapatButton";
 
 
 export interface IProps {

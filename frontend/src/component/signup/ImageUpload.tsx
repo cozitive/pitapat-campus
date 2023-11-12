@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useCallback, useMemo, useState } from "react";
-import style from "../../constant/style";
 import ImageUploadIcon from "./ImageUploadIcon";
+import style from "../../constant/style";
 
 
 type PhotoInfo = {
