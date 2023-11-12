@@ -16,14 +16,14 @@ from django.core.exceptions import ImproperlyConfigured
 import pymysql
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = str(Path(__file__).resolve().parent.parent.parent)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-def get_external_value(filename: str, key: str):
+def get_external_value(filename: Path, key: str):
     try:
         with open(filename, encoding='utf-8') as file:
             json_value = json.loads(file.read())
@@ -35,7 +35,7 @@ def get_external_value(filename: str, key: str):
         raise ImproperlyConfigured(f'key \'{key}\' does not exist') from error
 
 
-SECRET_KEY = get_external_value(f'{BASE_DIR}/backend/.secrets/secret_key.json', 'secret_key')
+SECRET_KEY = get_external_value(BASE_DIR / 'backend' / '.secrets' / 'secret_key.json', 'secret_key')
 
 # Application definition
 INSTALLED_APPS = [
@@ -146,7 +146,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_ROOT = f'{BASE_DIR}/static'
+STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = 'static/'
 
 # Default primary key field type
@@ -157,13 +157,16 @@ DEFAULT_AUTO_FIELD = 'pitapat.models.custom_field.unsigned_auto_field.UnsignedAu
 
 # Email Verification
 
-EMAIL_BACKEND = get_external_value(f'{BASE_DIR}/backend/.secrets/email.json', 'EMAIL_BACKEND')
-EMAIL_HOST = get_external_value(f'{BASE_DIR}/backend/.secrets/email.json', 'EMAIL_HOST')
-EMAIL_PORT = get_external_value(f'{BASE_DIR}/backend/.secrets/email.json', 'EMAIL_PORT')
-EMAIL_HOST_USER = get_external_value(f'{BASE_DIR}/backend/.secrets/email.json', 'EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = get_external_value(f'{BASE_DIR}/backend/.secrets/email.json', 'EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = get_external_value(f'{BASE_DIR}/backend/.secrets/email.json', 'EMAIL_USE_TLS')
-DEFAULT_FROM_EMAIL = get_external_value(f'{BASE_DIR}/backend/.secrets/email.json', 'DEFAULT_FROM_EMAIL')
+EMAIL_CONFIG_FILE = BASE_DIR / 'backend' / '.secrets' / 'email.json'
 
-CRYPTO_KEY = get_external_value(f'{BASE_DIR}/backend/.secrets/aes.json', 'key')
-CRYPTO_IV = get_external_value(f'{BASE_DIR}/backend/.secrets/aes.json', 'iv')
+EMAIL_BACKEND = get_external_value(EMAIL_CONFIG_FILE, 'EMAIL_BACKEND')
+EMAIL_HOST = get_external_value(EMAIL_CONFIG_FILE, 'EMAIL_HOST')
+EMAIL_PORT = get_external_value(EMAIL_CONFIG_FILE, 'EMAIL_PORT')
+EMAIL_HOST_USER = get_external_value(EMAIL_CONFIG_FILE, 'EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = get_external_value(EMAIL_CONFIG_FILE, 'EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = get_external_value(EMAIL_CONFIG_FILE, 'EMAIL_USE_TLS')
+DEFAULT_FROM_EMAIL = get_external_value(EMAIL_CONFIG_FILE, 'DEFAULT_FROM_EMAIL')
+
+CRYPTO_CONFIG_FILE = BASE_DIR / 'backend' / '.secrets' / 'aes.json'
+CRYPTO_KEY = get_external_value(CRYPTO_CONFIG_FILE, 'key')
+CRYPTO_IV = get_external_value(CRYPTO_CONFIG_FILE, 'iv')
